@@ -25,9 +25,10 @@ menu = {
 }
 
 resources = {
-    "water": 300,
-    "milk": 200,
-    "coffee": 100,
+    "water": [300, "ml"],
+    "milk": [200, "ml"],
+    "coffee": [100, "g"],
+    "money": [0, "$"]
 }
 
 coins = {
