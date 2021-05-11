@@ -26,9 +26,11 @@ def take_order(name):
         enough = check_resources(menu[order])
         if enough == "enough":
             drink = menu[order]
-            #### put in function
             amount = process_coins()
+            if transaction(amount, drink):
                 make_coffee(drink)
+            else:
+                return
         else:
             drink = check_resources(menu[order])
             print(drink)
@@ -68,8 +70,9 @@ def process_coins():
 # TODO: 4. Check if transaction successful
 def transaction(amount, drink):
     # Evaluate whether amount is enough to pay for drink
+    print(f"You paid {amount}. The drink costs {drink['cost']}.")
     if amount >= drink['cost']:
-        print(f"Thank you for your order. Your change is {amount - drink['cost']}")
+        print(f"Thank you for your order. Your change is {round(amount,2) - drink['cost']}")
         return True
     else:
         print("Sorry that is not enough money. Money refunded.")
