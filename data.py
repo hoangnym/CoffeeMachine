@@ -28,7 +28,7 @@ resources = {
     "water": [300, "ml"],
     "milk": [200, "ml"],
     "coffee": [100, "g"],
-    "money": [0, "$"]
+    "money": [0.0, "$"]
 }
 
 coins = {
