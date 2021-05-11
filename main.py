@@ -5,6 +5,7 @@ import data
 # use data import and assign value
 menu = data.menu
 resources = data.resources
+coins = data.coins
 
 
 # Defining functions
@@ -25,7 +26,9 @@ def take_order(name):
         enough = check_resources(menu[order])
         if enough == "enough":
             drink = menu[order]
-            make_coffee(drink)
+            #### put in function
+            amount = process_coins()
+                make_coffee(drink)
         else:
             drink = check_resources(menu[order])
             print(drink)
@@ -35,7 +38,7 @@ def take_order(name):
     return drink
 
 
-# TODO: 1. Print report of all coffee machine resources
+# 1. Print report of all coffee machine resources
 def print_report():
     for ingredient in resources:
         print(f"{ingredient}: {resources[ingredient][0]}{resources[ingredient][1]}")
@@ -43,7 +46,7 @@ def print_report():
     return order
 
 
-# TODO: 2. Check resources sufficient to make drink order
+# 2. Check resources sufficient to make drink order
 def check_resources(drink):
     for ingredient in drink['ingredients']:
         if drink['ingredients'][ingredient] > resources[ingredient][0]:
@@ -52,12 +55,28 @@ def check_resources(drink):
 
 
 # TODO: 3. Process coins
+def process_coins():
+    amount = 0
+
+    # Calculate amount of money
+    for coin in coins:
+        amount += coins[coin] * int(input(f"How many {coin}: "))
+
+    return amount
 
 
 # TODO: 4. Check if transaction successful
+def transaction(amount, drink):
+    # Evaluate whether amount is enough to pay for drink
+    if amount >= drink['cost']:
+        print(f"Thank you for your order. Your change is {amount - drink['cost']}")
+        return True
+    else:
+        print("Sorry that is not enough money. Money refunded.")
+        return False
 
 
-# TODO: 5. Make coffee
+# 5. Make coffee
 def make_coffee(drink):
     for ingredient in drink['ingredients']:
         resources[ingredient][0] -= drink['ingredients'][ingredient]
