@@ -87,7 +87,6 @@ def make_coffee(drink):
     for ingredient in drink['ingredients']:
         resources[ingredient][0] -= drink['ingredients'][ingredient]
     resources['money'][0] += drink['cost']
-    print(resources)
 
 
 # 6. Refill ingredients
