@@ -34,6 +34,9 @@ def take_order(name):
         else:
             drink = check_resources(menu[order])
             print(drink)
+    elif order == "refill":
+        refill_ingredients()
+        drink = "refill"
     elif order == "off":
         drink = "off"
 
@@ -56,7 +59,7 @@ def check_resources(drink):
     return "enough"
 
 
-# TODO: 3. Process coins
+# 3. Process coins
 def process_coins():
     amount = 0
 
@@ -67,7 +70,7 @@ def process_coins():
     return amount
 
 
-# TODO: 4. Check if transaction successful
+# 4. Check if transaction successful
 def transaction(amount, drink):
     # Evaluate whether amount is enough to pay for drink
     print(f"You paid {amount}. The drink costs {drink['cost']}.")
@@ -85,6 +88,15 @@ def make_coffee(drink):
         resources[ingredient][0] -= drink['ingredients'][ingredient]
     resources['money'][0] += drink['cost']
     print(resources)
+
+
+# 6. Refill ingredients
+def refill_ingredients():
+    for ingredient in resources:
+        if ingredient == "money":
+            continue
+        else:
+            resources[ingredient][0] += int(input(f"How much {resources[ingredient][1]} of {ingredient} to refill?: "))
 
 
 # Run program
